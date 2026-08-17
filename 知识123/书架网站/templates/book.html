@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}{{ b.title }}{% endblock %}
+{% block content %}
+<div class="book-page">
+  <a class="back" href="{{ url_for('index') }}">← 返回书架</a>
+  <div class="book-head">
+    <div class="cover big" style="background: {{ b.cover }}">
+      <span class="cover-title">{{ b.title }}</span>
+    </div>
+    <div class="book-info">
+      <h1>{{ b.title }}</h1>
+      <p class="meta">{{ b.author }} · {{ b.category }} · 共 {{ b.chapters|length }} 章</p>
+      <p class="desc">{{ b.desc }}</p>
+      <div class="card-tags">
+        {% for t in b.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+      </div>
+      <a class="btn-start" href="{{ url_for('read', bid=b.id, idx=0) }}"
+         data-book="{{ b.id }}">▶ 开始阅读</a>
+    </div>
+  </div>
+  <h2 class="toc-title">目录</h2>
+  <ol class="toc">
+    {% for ch in b.chapters %}
+    <li>
+      <a href="{{ url_for('read', bid=b.id, idx=loop.index0) }}"
+         data-book="{{ b.id }}" data-idx="{{ loop.index0 }}">{{ ch.title }}</a>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+  // 记住"上次读到哪一章"（localStorage，无需数据库）
+  document.querySelectorAll('[data-book]').forEach(a => {
+    const id = a.dataset.book;
+    const saved = localStorage.getItem('progress_' + id);
+    if (saved !== null && a.dataset.idx === saved) {
+      a.classList.add('continue');
+      if (a.classList.contains('btn-start')) a.textContent = '▶ 继续阅读：' + a.textContent.replace('▶ ', '');
+    }
+  });
+</script>
+{% endblock %}
