@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="read-page">
+  <div class="read-toolbar">
+    <a class="back" href="{{ url_for('book', bid=b.id) }}">← 目录</a>
+    <div class="font-ctrl">
+      <button id="fontMinus">A-</button>
+      <button id="fontPlus">A+</button>
+    </div>
+  </div>
+
+  <h1 class="read-title">{{ title }}</h1>
+  <p class="read-bookname">《{{ b.title }}》</p>
+
+  <article class="read-content {{ 'md' if b.category == '知识库' else 'novel' }}" id="content">
+    {{ content | safe }}
+  </article>
+
+  <div class="read-nav">
+    {% if idx > 0 %}
+      <a class="nav-btn" href="{{ url_for('read', bid=b.id, idx=idx-1) }}">上一章</a>
+    {% else %}
+      <span class="nav-btn disabled">上一章</span>
+    {% endif %}
+    <span class="nav-pos">{{ idx + 1 }} / {{ total }}</span>
+    {% if idx < total - 1 %}
+      <a class="nav-btn" href="{{ url_for('read', bid=b.id, idx=idx+1) }}">下一章</a>
+    {% else %}
+      <a class="nav-btn" href="{{ url_for('book', bid=b.id) }}">读完啦，返回目录</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+  // 阅读进度记忆
+  localStorage.setItem('progress_{{ b.id }}', '{{ idx }}');
+  // 字号调节
+  const content = document.getElementById('content');
+  let size = parseInt(localStorage.getItem('fontsize') || '19');
+  const apply = () => { content.style.fontSize = size + 'px'; localStorage.setItem('fontsize', size); };
+  apply();
+  document.getElementById('fontPlus').onclick = () => { size = Math.min(size + 1, 28); apply(); };
+  document.getElementById('fontMinus').onclick = () => { size = Math.max(size - 1, 14); apply(); };
+</script>
+{% endblock %}
