@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>通信工程知识导图</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #fafbfc; }
+  .markmap { position: absolute; inset: 0; }
+  .markmap > svg { width: 100%; height: 100%; }
+  #tip { position: fixed; left: 12px; bottom: 12px; background: #fff; border: 1px solid #ddd;
+         border-radius: 8px; padding: 8px 14px; font: 13px/1.6 "Microsoft YaHei", sans-serif;
+         color: #555; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+</style>
+<script>window.markmap = { autoLoader: { manual: false } }</script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.18"></script>
+</head>
+<body>
+<div class="markmap">
+<script type="text/template">
+---
+markmap:
+  initialExpandLevel: 2
+  colorFreezeLevel: 2
+  maxWidth: 300
+  spacingVertical: 6
+---
+
+# 📡 [通信工程](http://127.0.0.1:5000/read/kb-comm/0)
+
+## [01 数学基础](http://127.0.0.1:5000/read/kb-comm/1)
+### 复数与欧拉公式
+### 正弦信号三要素
+### 分贝 dB 换算
+### 傅里叶分析思想
+### 概率与高斯分布
+### Q函数与 erfc
+
+## [02 电路分析](http://127.0.0.1:5000/read/kb-comm/2)
+### 基尔霍夫定律 KCL/KVL
+### 串并联·分压分流
+### 戴维南定理与匹配
+### RC/RL 动态电路（τ=RC）
+### 相量法与阻抗
+### 串联谐振（选台）
+### 功率因数校正
+
+## [03 模拟电子技术](http://127.0.0.1:5000/read/kb-comm/3)
+### PN结与二极管
+### 三极管三个工作区
+### 共射放大与静态工作点
+### 场效应管（压控）
+### 负反馈四组态
+### 运放虚短虚断
+### 有源滤波器
+
+## [04 数字电子技术](http://127.0.0.1:5000/read/kb-comm/4)
+### 数制转换与格雷码
+### 逻辑代数与摩根定理
+### 卡诺图化简
+### 译码器/数据选择器
+### 触发器 D/JK/T
+### 计数器与状态机
+### ADC/DAC（6dB规则）
+
+## [05 信号与系统](http://127.0.0.1:5000/read/kb-comm/5)
+### 信号分类·δ与u
+### LTI系统与卷积
+### 傅里叶级数（离散谱）
+### 傅里叶变换（连续谱）
+### 频谱搬移=调制
+### 采样定理（f_s≥2f_max）
+### 拉普拉斯变换与稳定性
+### z变换（→数字系统）
+
+## [06 数字信号处理](http://127.0.0.1:5000/read/kb-comm/6)
+### 抽样·量化·编码
+### DFT与频率分辨率
+### FFT（快200倍）
+### 频谱泄漏与窗函数
+### FIR设计（线性相位）
+### IIR设计（高效率）
+### 匹配滤波器（最佳接收）
+
+## [07 通信原理（核心）](http://127.0.0.1:5000/read/kb-comm/7)
+### 系统模型与有效性/可靠性
+### 香农公式 C=B·log₂(1+S/N)
+### 模拟调制：AM/DSB/SSB/FM
+### PCM：抽样量化编码
+### 基带码型（NRZ/RZ/AMI）
+### 奈奎斯特准则与升余弦
+### 眼图（工程仪表盘）
+### 数字调制：2ASK/2FSK/2PSK
+### QPSK/16QAM 星座图
+### 误码率 BER 与瀑布曲线
+### 汉明码纠错
+### 复用：FDM/TDM/CDM
+
+## [08 电磁场与电磁波](http://127.0.0.1:5000/read/kb-comm/8)
+### 麦克斯韦方程组
+### 平面波与377Ω波阻抗
+### 极化（线/圆/椭圆）
+### 趋肤效应
+### 反射折射与全反射
+### 传输线·驻波比·史密斯圆图
+### 天线增益与链路预算
+
+## [09 高频电子线路](http://127.0.0.1:5000/read/kb-comm/9)
+### LC选频网络与Q值
+### 高频丙类功放
+### 三点式振荡器·晶振
+### 超外差接收机
+### 镜像频率
+### 包络检波与鉴频
+### 锁相环PLL·频率合成
+
+## [10 信息论与编码](http://127.0.0.1:5000/read/kb-comm/10)
+### 熵：信息的度量
+### 霍夫曼编码（压缩极限）
+### 互信息与信道容量
+### 香农三大定理
+### 率失真理论
+### Turbo/LDPC/Polar 码
+
+## [11 移动通信](http://127.0.0.1:5000/read/kb-comm/11)
+### 蜂窝与频率复用
+### 路径损耗·阴影·多径衰落
+### 多普勒频移
+### 多址：FDMA/TDMA/CDMA/OFDMA
+### 分集接收与均衡
+### MIMO与波束赋形
+### 5G：eMBB/uRLLC/mMTC
+
+## [12 光纤通信](http://127.0.0.1:5000/read/kb-comm/12)
+### 全反射与数值孔径
+### 单模 vs 多模
+### 损耗窗口 1310/1550nm
+### 色散限制
+### LD/PIN/APD/EDFA
+### WDM波分复用
+### PON 光纤到户
+
+## [13 计算机网络](http://127.0.0.1:5000/read/kb-comm/13)
+### OSI七层/TCP-IP四层
+### 以太网·MAC·CSMA/CD
+### IP地址与子网划分
+### 路由与NAT·IPv6
+### TCP三次握手/四次挥手
+### DNS/HTTP/HTTPS
+### WiFi与CSMA/CA
+
+## [🎓 毕业论文实战](http://127.0.0.1:5000/read/kb-thesis/0)
+### 选题：数字调制仿真与性能分析
+### 蒙特卡洛误码率仿真
+### AWGN vs 瑞利信道对比
+### 分集接收改进实验
+### 论文五章结构
+### 答辩问题预演
+
+# [📚 我的书架](http://127.0.0.1:5000/)
+## [轻小说（原创全文）](http://127.0.0.1:5000/?cat=轻小说)
+## [奈须蘑菇（作品导读）](http://127.0.0.1:5000/?cat=奈须蘑菇)
+## [三秋缒（作品导读）](http://127.0.0.1:5000/?cat=三秋缒)
+## [古典名著·四大名著（公版全文）](http://127.0.0.1:5000/?cat=古典名著)
+## [知识库（讲义+论文手册）](http://127.0.0.1:5000/?cat=知识库)
+</script>
+</div>
+<div id="tip">🖱️ 滚轮缩放 · 拖拽平移 · 点圆点展开/收起 · <b>点击带链接的科目名，直达书架网站对应章节</b>（需先启动书架：python app.py）</div>
+</body>
+</html>
