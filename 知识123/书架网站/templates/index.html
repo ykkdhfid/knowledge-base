@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}书架{% endblock %}
+{% block content %}
+<nav class="cats">
+  {% for c in cats %}
+    <a class="cat {% if c == cur_cat %}active{% endif %}"
+       href="{{ url_for('index', cat=c, q=q) }}">{{ c }}</a>
+  {% endfor %}
+</nav>
+
+{% if books %}
+<div class="grid">
+  {% for b in books %}
+  <a class="card" href="{{ url_for('book', bid=b.id) }}">
+    <div class="cover" style="background: {{ b.cover }}">
+      <span class="cover-title">{{ b.title }}</span>
+      <span class="cover-cat">{{ b.category }}</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">{{ b.title }}</div>
+      <div class="card-author">{{ b.author }}</div>
+      <div class="card-desc">{{ b.desc }}</div>
+      <div class="card-tags">
+        {% for t in b.tags[:3] %}<span class="tag">{{ t }}</span>{% endfor %}
+      </div>
+      <div class="card-chapters">共 {{ b.chapters|length }} 章</div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty">
+  <p>😕 没有找到相关书籍</p>
+  <a href="{{ url_for('index') }}">返回全部</a>
+</div>
+{% endif %}
+{% endblock %}
