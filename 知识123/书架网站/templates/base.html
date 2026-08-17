@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}我的书架{% endblock %} · 本地书架</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="{{ url_for('index') }}">📚 我的书架</a>
+  <a class="nav-link" href="/mindmap" title="通信工程知识导图（点击科目直达章节）">🗺️ 知识导图</a>
+  <form class="search" action="{{ url_for('index') }}" method="get">
+    <input type="text" name="q" placeholder="搜索书名 / 作者 / 标签…" value="{{ request.args.get('q','') }}">
+    <button type="submit">搜索</button>
+  </form>
+  <button class="theme-toggle" id="themeBtn" title="切换深浅色">🌙</button>
+</header>
+<main class="container">
+{% block content %}{% endblock %}
+</main>
+<footer class="footer">本地书架 · 内容由 ZCode 生成于 2026-08 · 仅用于个人学习</footer>
+<script>
+  // 深色模式
+  const btn = document.getElementById('themeBtn');
+  if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+  });
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
